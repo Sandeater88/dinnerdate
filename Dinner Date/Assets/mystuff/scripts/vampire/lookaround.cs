@@ -48,9 +48,9 @@ public class lookaround : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
 
             // Rotate back to 180 degrees
-            while (Mathf.Abs(Mathf.DeltaAngle(currentYRotation, 180f)) > 0.1f)
+            while (Mathf.Abs(Mathf.DeltaAngle(currentYRotation, -90f)) > 0.1f)
             {
-                currentYRotation = Mathf.LerpAngle(currentYRotation, 180f, Time.deltaTime * rotationSpeed);
+                currentYRotation = Mathf.LerpAngle(currentYRotation, -90f, Time.deltaTime * rotationSpeed);
                 transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, currentYRotation, transform.rotation.eulerAngles.z);
                 yield return null;
             }
