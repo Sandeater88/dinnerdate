@@ -118,12 +118,14 @@ public class SpawnManager : MonoBehaviour
     {
         int randomIndex = Random.Range(0, normalPrefabs.Length);
         currentPrefab = Instantiate(normalPrefabs[randomIndex], spawnLocation, Quaternion.identity);
+        currentPrefab.tag = "safe"; // Ensure normal prefabs have this tag
     }
 
     void SpawnPoisonousPrefab()
     {
         int randomIndex = Random.Range(0, poisonousPrefabs.Length);
         currentPrefab = Instantiate(poisonousPrefabs[randomIndex], spawnLocation, Quaternion.identity);
+        currentPrefab.tag = "poison"; // Ensure poisonous prefabs have this tag
     }
 
     void EatPrefab()
@@ -159,12 +161,6 @@ public class SpawnManager : MonoBehaviour
 
     bool IsPoisonousPrefab(GameObject prefab)
     {
-        foreach (GameObject poisonousPrefab in poisonousPrefabs)
-        {
-            if (prefab == poisonousPrefab)
-                return true;
-        }
-        return false;
+        return prefab.CompareTag("poison");
     }
 }
-
