@@ -1,10 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject[] prefabs; // Array to hold the prefabs to spawn
+    public GameObject[] normalPrefabs; // Array to hold the normal prefabs to spawn
+    public GameObject[] poisonousPrefabs; // Array to hold the poisonous prefabs to spawn
     public Vector3 spawnLocation; // Location where the prefab will be spawned
     public Canvas canvas; // Canvas to display the hover text
 
@@ -12,12 +14,14 @@ public class SpawnManager : MonoBehaviour
     private Text hoverText; // Text element to display instructions
     private Font customFont; // Reference to the custom font
 
+    public List<GameObject> hearts; // List to hold references to heart GameObjects
+
     void Start()
     {
-        // Check if the prefabs array has been set in the inspector
-        if (prefabs.Length != 6)
+        // Check if the prefabs arrays have been set in the inspector
+        if (normalPrefabs.Length == 0 || poisonousPrefabs.Length == 0)
         {
-            Debug.LogError("Invalid number of prefabs assigned in the inspector!");
+            Debug.LogError("Normal or poisonous prefabs arrays not assigned in the inspector!");
             return;
         }
 
@@ -49,8 +53,13 @@ public class SpawnManager : MonoBehaviour
     {
         while (true)
         {
-            // Spawn a random prefab at the specified location
-            SpawnRandomPrefab();
+            // Decide whether to spawn a normal or a poisonous prefab
+            bool spawnPoisonous = Random.Range(0f, 1f) < 0.5f;
+
+            if (spawnPoisonous)
+                SpawnPoisonousPrefab();
+            else
+                SpawnNormalPrefab();
 
             // Wait for one minute before spawning the next prefab
             yield return new WaitForSeconds(60f);
@@ -59,17 +68,14 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        // Check if a prefab is currently active
         if (currentPrefab != null)
         {
             // Raycast from the center of the screen
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit;
 
-            // Perform the raycast
             if (Physics.Raycast(ray, out hit))
             {
-                // Check if the raycast hits the current prefab
                 if (hit.transform.gameObject == currentPrefab)
                 {
                     // Display the hover text at the center of the screen
@@ -79,7 +85,10 @@ public class SpawnManager : MonoBehaviour
                     // Check for player input
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        EatPrefab();
+                        if (IsPoisonousPrefab(currentPrefab))
+                            EatPoisonousPrefab();
+                        else
+                            EatPrefab();
                     }
                     else if (Input.GetKeyDown(KeyCode.P))
                     {
@@ -92,6 +101,11 @@ public class SpawnManager : MonoBehaviour
                     hoverText.text = "";
                 }
             }
+            else
+            {
+                // Hide the hover text if the raycast doesn't hit anything
+                hoverText.text = "";
+            }
         }
         else
         {
@@ -100,16 +114,41 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    void SpawnRandomPrefab()
+    void SpawnNormalPrefab()
     {
-        int randomIndex = Random.Range(0, prefabs.Length);
-        currentPrefab = Instantiate(prefabs[randomIndex], spawnLocation, Quaternion.identity);
+        int randomIndex = Random.Range(0, normalPrefabs.Length);
+        currentPrefab = Instantiate(normalPrefabs[randomIndex], spawnLocation, Quaternion.identity);
+    }
+
+    void SpawnPoisonousPrefab()
+    {
+        int randomIndex = Random.Range(0, poisonousPrefabs.Length);
+        currentPrefab = Instantiate(poisonousPrefabs[randomIndex], spawnLocation, Quaternion.identity);
     }
 
     void EatPrefab()
     {
-        Debug.Log("Prefab eaten!");
+        Debug.Log("Normal prefab eaten!");
         Destroy(currentPrefab);
+    }
+
+    void EatPoisonousPrefab()
+    {
+        Debug.Log("Poisonous prefab eaten!");
+        Destroy(currentPrefab);
+
+        // Remove one heart if available
+        if (hearts.Count > 0)
+        {
+            GameObject heartToRemove = hearts[hearts.Count - 1];
+            hearts.Remove(heartToRemove);
+            Destroy(heartToRemove);
+        }
+        else
+        {
+            Debug.Log("Game Over - No hearts remaining");
+            // You can add game over logic here
+        }
     }
 
     void PassPrefab()
@@ -117,4 +156,15 @@ public class SpawnManager : MonoBehaviour
         Debug.Log("Prefab passed!");
         Destroy(currentPrefab);
     }
+
+    bool IsPoisonousPrefab(GameObject prefab)
+    {
+        foreach (GameObject poisonousPrefab in poisonousPrefabs)
+        {
+            if (prefab == poisonousPrefab)
+                return true;
+        }
+        return false;
+    }
 }
+

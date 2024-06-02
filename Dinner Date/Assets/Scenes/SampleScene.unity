@@ -754,6 +754,7 @@ GameObject:
   - component: {fileID: 669944978}
   - component: {fileID: 669944980}
   - component: {fileID: 669944979}
+  - component: {fileID: 669944981}
   m_Layer: 5
   m_Name: heart (2)
   m_TagString: Untagged
@@ -818,6 +819,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669944977}
   m_CullTransparentMesh: 1
+--- !u!65 &669944981
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669944977}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &674810125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1487,15 +1509,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8128ffb96069f8d42b112fce338be8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 5869213248351403094, guid: c8c21689e419d46b08cd83b3f6f0af1c, type: 3}
-  - {fileID: 6020311964160518906, guid: a434923c2bf0a4557946976bca1397ca, type: 3}
+  normalPrefabs:
+  - {fileID: 8646738973155252782, guid: fcfb4cbcc867a4808af09e55c877dfc0, type: 3}
   - {fileID: 3641111544981939413, guid: 435e2e8a8e9cd48e3adcf379d3c4d7e2, type: 3}
+  - {fileID: 6020311964160518906, guid: a434923c2bf0a4557946976bca1397ca, type: 3}
+  poisonousPrefabs:
   - {fileID: 186799609498798025, guid: 2881fef2849194f4788664e1e7c11866, type: 3}
   - {fileID: 5433448066923563074, guid: 0237281380e6d4d86ad7742a225628c0, type: 3}
-  - {fileID: 8646738973155252782, guid: fcfb4cbcc867a4808af09e55c877dfc0, type: 3}
+  - {fileID: 5869213248351403094, guid: c8c21689e419d46b08cd83b3f6f0af1c, type: 3}
   spawnLocation: {x: 40.505, y: 1.268, z: 38.48077}
   canvas: {fileID: 1910218950}
+  hearts:
+  - {fileID: 1330611302}
+  - {fileID: 1903238710}
+  - {fileID: 669944977}
 --- !u!1 &1318832535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,6 +1609,7 @@ GameObject:
   - component: {fileID: 1330611303}
   - component: {fileID: 1330611305}
   - component: {fileID: 1330611304}
+  - component: {fileID: 1330611306}
   m_Layer: 5
   m_Name: heart
   m_TagString: Untagged
@@ -1646,6 +1674,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330611302}
   m_CullTransparentMesh: 1
+--- !u!65 &1330611306
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330611302}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1470141268
 GameObject:
   m_ObjectHideFlags: 0
@@ -2098,6 +2147,7 @@ GameObject:
   - component: {fileID: 1903238711}
   - component: {fileID: 1903238713}
   - component: {fileID: 1903238712}
+  - component: {fileID: 1903238714}
   m_Layer: 5
   m_Name: heart (1)
   m_TagString: Untagged
@@ -2162,6 +2212,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903238710}
   m_CullTransparentMesh: 1
+--- !u!65 &1903238714
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903238710}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1910218947
 GameObject:
   m_ObjectHideFlags: 0
