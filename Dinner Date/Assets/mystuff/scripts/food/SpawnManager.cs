@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,9 +30,6 @@ public class SpawnManager : MonoBehaviour
             return;
         }
 
-        // Spawn a random prefab at the specified location
-        SpawnRandomPrefab();
-
         // Create a UI Text element
         GameObject hoverTextObject = new GameObject("HoverText");
         hoverTextObject.transform.SetParent(canvas.transform);
@@ -44,18 +40,36 @@ public class SpawnManager : MonoBehaviour
         hoverText.color = Color.white;
         hoverText.alignment = TextAnchor.MiddleCenter;
         hoverText.text = "";
+
+        // Start the coroutine to spawn prefabs
+        StartCoroutine(SpawnPrefabsWithDelay());
+    }
+
+    IEnumerator SpawnPrefabsWithDelay()
+    {
+        while (true)
+        {
+            // Spawn a random prefab at the specified location
+            SpawnRandomPrefab();
+
+            // Wait for one minute before spawning the next prefab
+            yield return new WaitForSeconds(60f);
+        }
     }
 
     void Update()
     {
+        // Check if a prefab is currently active
         if (currentPrefab != null)
         {
             // Raycast from the center of the screen
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit;
 
+            // Perform the raycast
             if (Physics.Raycast(ray, out hit))
             {
+                // Check if the raycast hits the current prefab
                 if (hit.transform.gameObject == currentPrefab)
                 {
                     // Display the hover text at the center of the screen
@@ -74,13 +88,15 @@ public class SpawnManager : MonoBehaviour
                 }
                 else
                 {
+                    // Hide the hover text if the raycast doesn't hit the prefab
                     hoverText.text = "";
                 }
             }
-            else
-            {
-                hoverText.text = "";
-            }
+        }
+        else
+        {
+            // Hide the hover text if there's no prefab
+            hoverText.text = "";
         }
     }
 
@@ -93,50 +109,12 @@ public class SpawnManager : MonoBehaviour
     void EatPrefab()
     {
         Debug.Log("Prefab eaten!");
-        if (IsPoisonous(currentPrefab))
-        {
-            Debug.Log("You ate a poisonous prefab!");
-            // Handle player losing health or other consequences for eating a poisonous prefab
-        }
         Destroy(currentPrefab);
-        SpawnRandomPrefab();
     }
 
     void PassPrefab()
     {
         Debug.Log("Prefab passed!");
-        if (IsSafe(currentPrefab))
-        {
-            Debug.Log("You passed a safe prefab!");
-            // Handle player gaining points or other rewards for passing a safe prefab
-        }
         Destroy(currentPrefab);
-        SpawnRandomPrefab();
-    }
-
-    bool IsPoisonous(GameObject prefab)
-    {
-        // Check if the prefab is one of the first three in the prefabs array
-        for (int i = 0; i < 3; i++)
-        {
-            if (prefab == prefabs[i])
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    bool IsSafe(GameObject prefab)
-    {
-        // Check if the prefab is one of the last three in the prefabs array
-        for (int i = 3; i < 6; i++)
-        {
-            if (prefab == prefabs[i])
-            {
-                return true;
-            }
-        }
-        return false;
     }
 }
