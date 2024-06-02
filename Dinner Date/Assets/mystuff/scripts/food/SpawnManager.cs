@@ -16,9 +16,9 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         // Check if the prefabs array has been set in the inspector
-        if (prefabs.Length == 0)
+        if (prefabs.Length != 6)
         {
-            Debug.LogError("No prefabs assigned in the inspector!");
+            Debug.LogError("Invalid number of prefabs assigned in the inspector!");
             return;
         }
 
@@ -93,6 +93,11 @@ public class SpawnManager : MonoBehaviour
     void EatPrefab()
     {
         Debug.Log("Prefab eaten!");
+        if (IsPoisonous(currentPrefab))
+        {
+            Debug.Log("You ate a poisonous prefab!");
+            // Handle player losing health or other consequences for eating a poisonous prefab
+        }
         Destroy(currentPrefab);
         SpawnRandomPrefab();
     }
@@ -100,8 +105,38 @@ public class SpawnManager : MonoBehaviour
     void PassPrefab()
     {
         Debug.Log("Prefab passed!");
+        if (IsSafe(currentPrefab))
+        {
+            Debug.Log("You passed a safe prefab!");
+            // Handle player gaining points or other rewards for passing a safe prefab
+        }
         Destroy(currentPrefab);
         SpawnRandomPrefab();
     }
-}
 
+    bool IsPoisonous(GameObject prefab)
+    {
+        // Check if the prefab is one of the first three in the prefabs array
+        for (int i = 0; i < 3; i++)
+        {
+            if (prefab == prefabs[i])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool IsSafe(GameObject prefab)
+    {
+        // Check if the prefab is one of the last three in the prefabs array
+        for (int i = 3; i < 6; i++)
+        {
+            if (prefab == prefabs[i])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}
