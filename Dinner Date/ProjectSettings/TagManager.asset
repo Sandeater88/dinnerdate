@@ -8,6 +8,8 @@ TagManager:
   - vampire
   - poison
   - safe
+  - oggarlic
+  - garlic
   layers:
   - Default
   - TransparentFX
