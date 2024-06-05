@@ -44,5 +44,3 @@ public class HealthBarFiller : MonoBehaviour
         return false; // Player is not holding a garlic object
     }
 }
-
-
