@@ -14,7 +14,7 @@ public class Caughtpass : MonoBehaviour
         if (isPlayerColliding && isPKeyDown)
         {
             // Increase the health bar fill by 1/15
-            healthBar.IncreaseFill(1f / 15f);
+            healthBar.IncreaseFill(1f / 30f);
             Debug.Log("Caught pass"); // Print "Caught pass" to the console
             isPKeyDown = false; // Reset the flag to prevent repeated filling
         }
