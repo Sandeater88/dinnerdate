@@ -1,34 +1,63 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GarlicInteraction : MonoBehaviour
 {
-    public Camera playerCamera; // Assign the main camera in the Inspector
-    public GameObject garlicPrefab; // Assign the garlic prefab in the Inspector
+    public Camera playerCamera;
+    public GameObject garlicPrefab;
+
+    public float holdDistance = 1.0f;
+    public float maxThrowForce = 10.0f;
+    public float throwChargeTime = 2.0f;
+
+    public Slider throwForceSlider; // Reference to the slider in the UI
 
     private GameObject heldGarlic = null;
     private Rigidbody heldGarlicRigidbody = null;
 
-    void Update()
+    private Vector3 throwStartPoint;
+    private float throwStartTime;
+    private bool isChargingThrow;
+
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             TryPickUpOrSpawnGarlic();
         }
 
-        if (Input.GetMouseButton(0) && heldGarlic != null)
-        {
-            MoveHeldGarlic();
-        }
-
         if (Input.GetMouseButtonUp(0) && heldGarlic != null)
         {
             DropGarlic();
         }
+
+        if (Input.GetMouseButton(1))
+        {
+            ChargeThrow();
+            throwForceSlider.gameObject.SetActive(true); // Show slider during throw charge
+        }
+        else
+        {
+            throwForceSlider.gameObject.SetActive(false); // Hide slider when not charging
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            StartThrowCharge();
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            ReleaseThrow();
+        }
+
+        if (Input.GetMouseButton(0) && heldGarlic != null)
+        {
+            MoveHeldGarlic();
+        }
     }
- 
-    void TryPickUpOrSpawnGarlic()
+
+    private void TryPickUpOrSpawnGarlic()
     {
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -38,58 +67,92 @@ public class GarlicInteraction : MonoBehaviour
             {
                 SpawnGarlic(hit.collider.gameObject);
             }
-             else if (hit.collider.CompareTag("garlic"))
-             {
-                 PickUpGarlic(hit.collider.gameObject);
-             }
-         } 
-        
+            else if (hit.collider.CompareTag("garlic"))
+            {
+                PickUpGarlic(hit.collider.gameObject);
+            }
+        }
     }
 
-    void SpawnGarlic(GameObject ogGarlic)
+    private void SpawnGarlic(GameObject ogGarlic)
     {
         Vector3 spawnPosition = ogGarlic.transform.position;
         Quaternion spawnRotation = ogGarlic.transform.rotation;
         GameObject newGarlic = Instantiate(garlicPrefab, spawnPosition, spawnRotation);
-        newGarlic.tag = "garlic"; // Ensure the new object is tagged as "garlic"
+        newGarlic.tag = "garlic";
     }
 
-    void PickUpGarlic(GameObject garlic)
+    private void PickUpGarlic(GameObject garlic)
     {
         heldGarlic = garlic;
         heldGarlicRigidbody = heldGarlic.GetComponent<Rigidbody>();
         if (heldGarlicRigidbody != null)
         {
-            heldGarlicRigidbody.isKinematic = true; // Disable physics while holding
+            heldGarlicRigidbody.isKinematic = true;
         }
         Collider garlicCollider = heldGarlic.GetComponent<Collider>();
         if (garlicCollider != null)
         {
-            garlicCollider.enabled = false; // Disable collider while holding
+            garlicCollider.enabled = false;
         }
     }
 
-    void MoveHeldGarlic()
+    private void MoveHeldGarlic()
     {
-        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-        Vector3 holdPosition = ray.origin + ray.direction * 1; // Adjust the distance as needed
+        Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
+        Ray ray = playerCamera.ScreenPointToRay(screenCenter);
+        Vector3 holdPosition = ray.origin + ray.direction * holdDistance;
         heldGarlic.transform.position = holdPosition;
     }
 
-    void DropGarlic()
+    private void DropGarlic()
     {
         if (heldGarlicRigidbody != null)
         {
-            heldGarlicRigidbody.isKinematic = false; // Enable physics when dropping
+            heldGarlicRigidbody.isKinematic = false;
         }
         Collider garlicCollider = heldGarlic.GetComponent<Collider>();
         if (garlicCollider != null)
         {
-            garlicCollider.enabled = true; // Enable collider when dropping
+            garlicCollider.enabled = true;
         }
         heldGarlic = null;
         heldGarlicRigidbody = null;
-    } 
+    }
+
+    private void StartThrowCharge()
+    {
+        if (heldGarlic != null)
+        {
+            throwStartPoint = heldGarlic.transform.position;
+            throwStartTime = Time.time;
+            isChargingThrow = true;
+        }
+    }
+
+    private void ChargeThrow()
+    {
+        if (isChargingThrow)
+        {
+            float chargeTime = Time.time - throwStartTime;
+            float throwForce = Mathf.Clamp(chargeTime / throwChargeTime, 0f, 1f) * maxThrowForce;
+            throwForceSlider.value = throwForce / maxThrowForce; // Update slider value
+        }
+    }
+
+    private void ReleaseThrow()
+    {
+        if (isChargingThrow && heldGarlic != null)
+        {
+            Vector3 throwDirection = (playerCamera.transform.forward + playerCamera.transform.up).normalized;
+            float chargeTime = Time.time - throwStartTime;
+            float throwForce = Mathf.Clamp(chargeTime / throwChargeTime, 0f, 1f) * maxThrowForce;
+            heldGarlicRigidbody.isKinematic = false;
+            heldGarlicRigidbody.AddForce(throwDirection * throwForce, ForceMode.Impulse);
+            throwForceSlider.value = 0f; // Reset slider value after releasing throw
+        }
+        isChargingThrow = false;
+        heldGarlic = null;
+        heldGarlicRigidbody = null;
+    }
 }
-
-
