@@ -1112,7 +1112,7 @@ GameObject:
   - component: {fileID: 669944981}
   m_Layer: 5
   m_Name: heart (2)
-  m_TagString: Untagged
+  m_TagString: heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1369,6 +1369,7 @@ GameObject:
   - component: {fileID: 680555162}
   - component: {fileID: 680555163}
   - component: {fileID: 680555164}
+  - component: {fileID: 680555165}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1422,6 +1423,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8111cb58ab6b69c4f85562e920518768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 1318832539}
+--- !u!114 &680555165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680555161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92d0c9828d665546a58886cc50d6cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1318832539}
@@ -3032,7 +3046,7 @@ GameObject:
   - component: {fileID: 1330611306}
   m_Layer: 5
   m_Name: heart
-  m_TagString: Untagged
+  m_TagString: heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3808,7 +3822,7 @@ GameObject:
   - component: {fileID: 1903238714}
   m_Layer: 5
   m_Name: heart (1)
-  m_TagString: Untagged
+  m_TagString: heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
