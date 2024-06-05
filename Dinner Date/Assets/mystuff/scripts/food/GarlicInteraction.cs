@@ -151,8 +151,21 @@ public class GarlicInteraction : MonoBehaviour
             heldGarlicRigidbody.AddForce(throwDirection * throwForce, ForceMode.Impulse);
             throwForceSlider.value = 0f; // Reset slider value after releasing throw
         }
+
         isChargingThrow = false;
+
+        // Re-enable collider if there's a held garlic
+        if (heldGarlic != null)
+        {
+            Collider garlicCollider = heldGarlic.GetComponent<Collider>();
+            if (garlicCollider != null)
+            {
+                garlicCollider.enabled = true;
+            }
+        }
+
         heldGarlic = null;
         heldGarlicRigidbody = null;
     }
+
 }
