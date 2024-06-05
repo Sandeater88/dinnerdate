@@ -7,15 +7,16 @@ public class Caughtpass : MonoBehaviour
     public HealthBar healthBar; // Reference to the health bar script
 
     private bool isPlayerColliding; // Flag to track if the player is colliding with the object
-    private bool isPKeyPressed; // Flag to track if the "P" key is pressed
+    private bool isPKeyDown; // Flag to track if the "P" key is pressed
 
     void Update()
     {
-        if (isPlayerColliding && isPKeyPressed)
+        if (isPlayerColliding && isPKeyDown)
         {
             // Increase the health bar fill by 1/15
             healthBar.IncreaseFill(1f / 15f);
             Debug.Log("Caught pass"); // Print "Caught pass" to the console
+            isPKeyDown = false; // Reset the flag to prevent repeated filling
         }
     }
 
@@ -39,11 +40,7 @@ public class Caughtpass : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            isPKeyPressed = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.P))
-        {
-            isPKeyPressed = false;
+            isPKeyDown = true;
         }
     }
 }
