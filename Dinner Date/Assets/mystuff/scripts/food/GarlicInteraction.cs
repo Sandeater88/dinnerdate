@@ -27,7 +27,7 @@ public class GarlicInteraction : MonoBehaviour
             DropGarlic();
         }
     }
-
+ 
     void TryPickUpOrSpawnGarlic()
     {
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
@@ -38,11 +38,12 @@ public class GarlicInteraction : MonoBehaviour
             {
                 SpawnGarlic(hit.collider.gameObject);
             }
-            else if (hit.collider.CompareTag("garlic"))
-            {
-                PickUpGarlic(hit.collider.gameObject);
-            }
-        }
+             else if (hit.collider.CompareTag("garlic"))
+             {
+                 PickUpGarlic(hit.collider.gameObject);
+             }
+         } 
+        
     }
 
     void SpawnGarlic(GameObject ogGarlic)
@@ -88,7 +89,7 @@ public class GarlicInteraction : MonoBehaviour
         }
         heldGarlic = null;
         heldGarlicRigidbody = null;
-    }
+    } 
 }
 
 

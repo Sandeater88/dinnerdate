@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6926400769896862420}
   serializedVersion: 2
   m_LocalRotation: {x: 0.37046632, y: -0.10005373, z: 0.27911964, w: 0.88024783}
-  m_LocalPosition: {x: -7.3166656, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 13.062, y: 13.062, z: 13.062}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 8174126411531172347}
   - component: {fileID: 4253469176288071439}
   - component: {fileID: 1702413955102096855}
-  - component: {fileID: 4670328812060507166}
   - component: {fileID: 1134911569076940695}
+  - component: {fileID: 917042835498749660}
   m_Layer: 0
   m_Name: Garlic
   m_TagString: garlic
@@ -113,7 +113,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 40.36334, y: 0.31, z: 40.291416}
-  m_LocalScale: {x: -0.02, y: -0.02, z: -0.02}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8388567729001649490}
@@ -127,7 +127,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9186798242002412868}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: bb566780844e6474d83caab1d7f4b4bc, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
@@ -167,7 +167,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &4670328812060507166
+--- !u!114 &1134911569076940695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9186798242002412868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4dcb3df876e5d042a12ae241d72e4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &917042835498749660
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,17 +198,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.988098, y: 5.5200567, z: 5.594063}
-  m_Center: {x: -6.9530487, y: -0.4657315, z: -0.46682358}
---- !u!114 &1134911569076940695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9186798242002412868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4dcb3df876e5d042a12ae241d72e4a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Size: {x: 6.313324, y: 4.6803904, z: 6.5877914}
+  m_Center: {x: 0.2243042, y: 0, z: 0}
