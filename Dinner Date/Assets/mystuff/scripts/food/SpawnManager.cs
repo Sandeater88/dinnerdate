@@ -18,6 +18,8 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
+   
+
         // Check if the prefabs arrays have been set in the inspector
         if (normalPrefabs.Length == 0 || poisonousPrefabs.Length == 0)
         {
@@ -139,6 +141,7 @@ public class SpawnManager : MonoBehaviour
         Debug.Log("Poisonous prefab eaten!");
         Destroy(currentPrefab);
 
+
         // Remove one heart if available
         if (hearts.Count > 0)
         {
@@ -151,6 +154,7 @@ public class SpawnManager : MonoBehaviour
             Debug.Log("Game Over - No hearts remaining");
             // You can add game over logic here
         }
+
     }
 
     void PassPrefab()
