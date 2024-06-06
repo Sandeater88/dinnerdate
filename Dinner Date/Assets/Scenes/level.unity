@@ -341,6 +341,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FFK_TrashBin_01_01
       objectReference: {fileID: 0}
+    - target: {fileID: 2058924224662535230, guid: 94b0b1569fa2f664daefecf0f4768ab3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4a3c4e9ae9b122e449659fdb803fb1dc, type: 2}
     - target: {fileID: 6758556085888329084, guid: 94b0b1569fa2f664daefecf0f4768ab3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 44.74
@@ -381,6 +385,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8195934687297636749, guid: 94b0b1569fa2f664daefecf0f4768ab3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d1a06be464c4f34a858b507405a7bb5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1613,6 +1621,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 280086631}
     m_Modifications:
+    - target: {fileID: 6586350620653500361, guid: c906b7c556f2141479e02b173fe6c200, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c822a288072f2c7478063b318d9f9534, type: 2}
     - target: {fileID: 6586350621230786758, guid: c906b7c556f2141479e02b173fe6c200, type: 3}
       propertyPath: m_Name
       value: FFK_Lamp_Ceiling_03_02 (1)
@@ -2315,6 +2327,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.0311
       objectReference: {fileID: 0}
+    - target: {fileID: 6980208542491786053, guid: 57e11b61f7f21a44ab797b7d95ea1b37, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b65d6f1427086d84f91a3153f6f82ffc, type: 2}
     - target: {fileID: 9067382405129887631, guid: 57e11b61f7f21a44ab797b7d95ea1b37, type: 3}
       propertyPath: m_Name
       value: wallsetc
@@ -2744,6 +2760,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4575188363387654834, guid: 4d21a4697e44cd24bad1bef46f1b6bd3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4a3c4e9ae9b122e449659fdb803fb1dc, type: 2}
     - target: {fileID: 5452623296001216859, guid: 4d21a4697e44cd24bad1bef46f1b6bd3, type: 3}
       propertyPath: m_Name
       value: FFK_CounterTable_01_01
@@ -3914,6 +3934,63 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.4107263, y: 0.51061416, z: 2.117208}
   m_Center: {x: 0.0014275915, y: -0.39377004, z: 0.0017960676}
+--- !u!1001 &1557981069
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4128866075157480728, guid: 22083d3c7778346438a911c3b30e2116, type: 3}
+      propertyPath: m_Name
+      value: FFK_Kiosk_ServicePlate_01_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018136115076842658, guid: 22083d3c7778346438a911c3b30e2116, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 43.253952
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018136115076842658, guid: 22083d3c7778346438a911c3b30e2116, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018136115076842658, guid: 22083d3c7778346438a911c3b30e2116, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 33.25051
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018136115076842658, guid: 22083d3c7778346438a911c3b30e2116, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018136115076842658, guid: 22083d3c7778346438a911c3b30e2116, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018136115076842658, guid: 22083d3c7778346438a911c3b30e2116, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018136115076842658, guid: 22083d3c7778346438a911c3b30e2116, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018136115076842658, guid: 22083d3c7778346438a911c3b30e2116, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018136115076842658, guid: 22083d3c7778346438a911c3b30e2116, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018136115076842658, guid: 22083d3c7778346438a911c3b30e2116, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 22083d3c7778346438a911c3b30e2116, type: 3}
 --- !u!1 &1572137545
 GameObject:
   m_ObjectHideFlags: 0
@@ -5349,3 +5426,4 @@ SceneRoots:
   - {fileID: 33879263}
   - {fileID: 840634501}
   - {fileID: 841875498}
+  - {fileID: 1557981069}
