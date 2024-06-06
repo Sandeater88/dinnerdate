@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Replay : MonoBehaviour
 {
-    public void Startscherm()
+    void Update()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 }
