@@ -157,7 +157,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 104037d8884276643837e8533acc3eec, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.006
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1761,7 +1761,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -3302,6 +3302,7 @@ MonoBehaviour:
   - {fileID: 5869213248351403094, guid: c8c21689e419d46b08cd83b3f6f0af1c, type: 3}
   spawnLocation: {x: 40.505, y: 1.268, z: 38.48077}
   canvas: {fileID: 1910218950}
+  healthBar: {fileID: 1318832537}
   hearts:
   - {fileID: 1330611302}
   - {fileID: 1903238710}

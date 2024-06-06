@@ -10,17 +10,17 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] poisonousPrefabs; // Array to hold the poisonous prefabs to spawn
     public Vector3 spawnLocation; // Location where the prefab will be spawned
     public Canvas canvas; // Canvas to display the hover text
+    public Image healthBar; // Reference to the health bar
 
     private GameObject currentPrefab; // The currently spawned prefab
     private Text hoverText; // Text element to display instructions
     private Font customFont; // Reference to the custom font
 
     public List<GameObject> hearts; // List to hold references to heart GameObjects
+    private float healthFillAmount = 1f / 15f; // Amount to fill the health bar by
 
     void Start()
     {
-   
-
         // Check if the prefabs arrays have been set in the inspector
         if (normalPrefabs.Length == 0 || poisonousPrefabs.Length == 0)
         {
@@ -64,7 +64,10 @@ public class SpawnManager : MonoBehaviour
             else
                 SpawnNormalPrefab();
 
-            // Wait for one minute before spawning the next prefab
+            // Start the coroutine to destroy the prefab after 30 seconds
+            StartCoroutine(DestroyPrefabAfterDelay(currentPrefab, 30f));
+
+            // Wait for 30 seconds before spawning the next prefab
             yield return new WaitForSeconds(30f);
         }
     }
@@ -135,13 +138,14 @@ public class SpawnManager : MonoBehaviour
     {
         Debug.Log("Normal prefab eaten!");
         Destroy(currentPrefab);
+        currentPrefab = null;
     }
 
     void EatPoisonousPrefab()
     {
         Debug.Log("Poisonous prefab eaten!");
         Destroy(currentPrefab);
-
+        currentPrefab = null;
 
         // Remove one heart if available
         if (hearts.Count > 1)
@@ -158,12 +162,23 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-  
-
     void PassPrefab()
     {
         Debug.Log("Prefab passed!");
         Destroy(currentPrefab);
+        currentPrefab = null;
+    }
+
+    IEnumerator DestroyPrefabAfterDelay(GameObject prefab, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (prefab != null)
+        {
+            Destroy(prefab);
+            currentPrefab = null;
+            // Increase the health bar fill amount
+            healthBar.fillAmount = Mathf.Clamp01(healthBar.fillAmount + healthFillAmount);
+        }
     }
 
     bool IsPoisonousPrefab(GameObject prefab)
