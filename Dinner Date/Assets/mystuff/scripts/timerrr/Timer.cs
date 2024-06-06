@@ -5,7 +5,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerText; // Reference to the TextMeshProUGUI component
-    private float timerDuration = 60f; // Duration of the timer in seconds
+    private float timerDuration = 30f; // Duration of the timer in seconds
     private float currentTime; // Current time of the timer
     private bool timerRunning; // Flag to indicate if the timer is running
     private GameObject[] taggedObjects; // Array to hold objects with "safe" or "poison" tags

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
@@ -64,7 +65,7 @@ public class SpawnManager : MonoBehaviour
                 SpawnNormalPrefab();
 
             // Wait for one minute before spawning the next prefab
-            yield return new WaitForSeconds(60f);
+            yield return new WaitForSeconds(30f);
         }
     }
 
@@ -81,7 +82,7 @@ public class SpawnManager : MonoBehaviour
                 if (hit.transform.gameObject == currentPrefab)
                 {
                     // Display the hover text at the center of the screen
-                    hoverText.transform.position = new Vector2(Screen.width / 2, Screen.height / 2 - 30);
+                    hoverText.transform.position = new Vector2(Screen.width / 2, Screen.height / 3);
                     hoverText.text = "Press E to eat, P to pass";
 
                     // Check for player input
@@ -143,7 +144,7 @@ public class SpawnManager : MonoBehaviour
 
 
         // Remove one heart if available
-        if (hearts.Count > 0)
+        if (hearts.Count > 1)
         {
             GameObject heartToRemove = hearts[hearts.Count - 1];
             hearts.Remove(heartToRemove);
@@ -153,9 +154,11 @@ public class SpawnManager : MonoBehaviour
         {
             Debug.Log("Game Over - No hearts remaining");
             // You can add game over logic here
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-
     }
+
+  
 
     void PassPrefab()
     {

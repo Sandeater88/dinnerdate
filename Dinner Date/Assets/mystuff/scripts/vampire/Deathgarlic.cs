@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Deathgarlic : MonoBehaviour
@@ -19,7 +20,7 @@ public class Deathgarlic : MonoBehaviour
 
     private void DestroyHeart()
     {
-        if (hearts.Count > 0) // Check if there are any hearts left
+        if (hearts.Count > 1) // Check if there are any hearts left
         {
             GameObject heartToRemove = hearts[hearts.Count - 1]; // Get the last heart in the list
             hearts.RemoveAt(hearts.Count - 1); // Remove the heart from the list
@@ -28,6 +29,7 @@ public class Deathgarlic : MonoBehaviour
         else
         {
             Debug.Log("No more hearts left!"); // Optionally log a message if no hearts are left
+            SceneManager.LoadScene(3);
         }
     }
 }
